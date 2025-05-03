@@ -50,7 +50,7 @@ cmd_to_be_executed_as_super_user() {
   echo "" &&
 
   # Set VTs to 10
-  sed -i 's/#NAutoVTs=6/NAutoVTs=10/' /etc/systemd/logind.conf &&
+  sed -i 's/#NAutoVTs=6/NAutoVTs=12/' /etc/systemd/logind.conf &&
   echo "" &&
   echo "Increase VTs to 10" &&
   echo "" &&
