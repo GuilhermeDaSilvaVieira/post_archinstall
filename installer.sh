@@ -138,6 +138,7 @@ cmd_to_be_executed_as_super_user() {
     "syncthing@robin"
     "cronie"
     "docker"
+    "tor"
   )
 
   # System Management
