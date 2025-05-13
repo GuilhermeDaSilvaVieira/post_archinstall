@@ -168,78 +168,21 @@ cmd_to_be_executed_as_super_user() {
   echo "" &&
 
   # Isolate programs to specific user
-  # Nami
-  groupadd nami_only &&
-  usermod -aG nami_only nami &&
-  chown root:nami_only /bin/tradingview /usr/share/applications/tradingview.desktop &&
-  chmod 750 /bin/tradingview /usr/share/applications/tradingview.desktop &&
+  echo '[Unit]' >> /etc/systemd/system/change-permissions.service &&
+  echo 'Description=Check and Correct Permissions After Update' >> /etc/systemd/system/change-permissions.service &&
+  echo 'After=systemd-update-done.service' >> /etc/systemd/system/change-permissions.service &&
+  echo '' >> /etc/systemd/system/change-permissions.service &&
+  echo '[Service]' >> /etc/systemd/system/change-permissions.service &&
+  echo 'Type=oneshot' >> /etc/systemd/system/change-permissions.service &&
+  echo 'ExecStart=/home/franky/Development/Bash/post_archinstall/change_permissions.sh' >> /etc/systemd/system/change-permissions.service &&
+  echo 'RemainAfterExit=true' >> /etc/systemd/system/change-permissions.service &&
+  echo '' >> /etc/systemd/system/change-permissions.service &&
+  echo '[Install]' >> /etc/systemd/system/change-permissions.service &&
+  echo 'WantedBy=multi-user.target' >> /etc/systemd/system/change-permissions.service &&
+  systemctl daemon-reload
+  systemctl enable --now change-permissions.service
   echo "" &&
-  echo "Nami programs isolated" &&
-  echo "" &&
-
-  # Robin
-  groupadd robin_only &&
-  usermod -aG robin_only robin &&
-  chown root:robin_only /bin/obsidian /usr/share/applications/obsidian.desktop &&
-  chmod 750 /bin/obsidian /usr/share/applications/obsidian.desktop &&
-  echo "" &&
-  echo "Robin programs isolated" &&
-  echo "" &&
-
-  # Franky
-  groupadd franky_only &&
-  usermod -aG franky_only franky &&
-  chown root:franky_only /bin/lazygit &&
-  chmod 750 /bin/lazygit &&
-  chown root:franky_only /bin/gitui &&
-  chmod 750 /bin/gitui &&
-  chown root:franky_only /bin/lldb &&
-  chmod 750 /bin/lldb &&
-  chown root:franky_only /bin/mise &&
-  chmod 750 /bin/mise &&
-  chown root:franky_only /bin/rust-analyzer &&
-  chmod 750 /bin/rust-analyzer &&
-  chown root:franky_only /bin/rustup &&
-  chmod 750 /bin/rustup &&
-  chown root:franky_only /bin/bash-language-server &&
-  chmod 750 /bin/bash-language-server &&
-  chown root:franky_only /bin/basedpyright &&
-  chmod 750 /bin/basedpyright &&
-  chown root:franky_only /bin/basedpyright-langserver &&
-  chmod 750 /bin/basedpyright-langserver &&
-  chown root:franky_only /bin/ruff &&
-  chmod 750 /bin/ruff &&
-  chown root:franky_only /bin/black &&
-  chmod 750 /bin/black &&
-  chown root:franky_only /bin/blackd &&
-  chmod 750 /bin/blackd &&
-  chown root:franky_only /bin/dnsmasq &&
-  chmod 750 /bin/dnsmasq &&
-  chown root:franky_only /bin/virt-manager /usr/share/applications/virt-manager.desktop &&
-  chmod 750 /bin/virt-manager /usr/share/applications/virt-manager.desktop &&
-  chown root:franky_only /bin/chromium /usr/share/applications/chromium.desktop &&
-  chmod 750 /bin/chromium /usr/share/applications/chromium.desktop &&
-  chown root:franky_only /bin/android-studio /usr/share/applications/android-studio.desktop &&
-  chmod 750 /bin/android-studio /usr/share/applications/android-studio.desktop &&
-  chown root:franky_only /bin/code /usr/share/applications/code.desktop &&
-  chmod 750 /bin/code /usr/share/applications/code.desktop &&
-  echo "" &&
-  echo "Franky programs isolated" &&
-  echo "" &&
-
-  # Usopp
-  groupadd usopp_only &&
-  usermod -aG usopp_only usopp &&
-  chown root:usopp_only /bin/ani-cli &&
-  chmod 750 /bin/ani-cli  &&
-  chown root:usopp_only /bin/mangohud &&
-  chmod 750 /bin/mangohud  &&
-  chown root:usopp_only /bin/steam /usr/share/applications/steam.desktop &&
-  chmod 750 /bin/steam /usr/share/applications/steam.desktop &&
-  chown root:usopp_only /bin/discord /usr/share/applications/discord.desktop &&
-  chmod 750 /bin/discord /usr/share/applications/discord.desktop
-  echo "" &&
-  echo "Usopp programs isolated" &&
+  echo "Change permissions service enabled" &&
   echo ""
 }
 
