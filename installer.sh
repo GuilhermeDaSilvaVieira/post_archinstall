@@ -168,21 +168,20 @@ cmd_to_be_executed_as_super_user() {
   echo "" &&
 
   # Isolate programs to specific user
-  echo '[Unit]' >> /etc/systemd/system/change-permissions.service &&
-  echo 'Description=Check and Correct Permissions After Update' >> /etc/systemd/system/change-permissions.service &&
-  echo 'After=systemd-update-done.service' >> /etc/systemd/system/change-permissions.service &&
-  echo '' >> /etc/systemd/system/change-permissions.service &&
-  echo '[Service]' >> /etc/systemd/system/change-permissions.service &&
-  echo 'Type=oneshot' >> /etc/systemd/system/change-permissions.service &&
-  echo 'ExecStart=/home/franky/Development/Bash/post_archinstall/change_permissions.sh' >> /etc/systemd/system/change-permissions.service &&
-  echo 'RemainAfterExit=true' >> /etc/systemd/system/change-permissions.service &&
-  echo '' >> /etc/systemd/system/change-permissions.service &&
-  echo '[Install]' >> /etc/systemd/system/change-permissions.service &&
-  echo 'WantedBy=multi-user.target' >> /etc/systemd/system/change-permissions.service &&
-  systemctl daemon-reload
-  systemctl enable --now change-permissions.service
+  mkdir -p /etc/pacman.d/hooks &&
+  echo '[Trigger]' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
+  echo 'Operation = Install' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
+  echo 'Operation = Upgrade' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
+  echo 'Operation = Remove' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
+  echo 'Type = Package' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
+  echo 'Target = *' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
+  echo '' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
+  echo '[Action]' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
+  echo 'Description = Running my custom script after pacman/paru transaction...' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
+  echo 'When = PostTransaction' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
+  echo 'Exec = /home/franky/Development/Bash/post_archinstall/change_permissions.sh' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
   echo "" &&
-  echo "Change permissions service enabled" &&
+  echo "Isolate packages hook active" &&
   echo ""
 }
 
