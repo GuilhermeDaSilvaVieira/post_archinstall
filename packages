@@ -48,7 +48,6 @@ imv
 jq
 kitty
 lazygit
-lib32-nvidia-utils
 libisl
 libmpc
 libmtp
@@ -70,8 +69,6 @@ nordic-bluish-accent-theme
 nordzy-cursors
 noto-fonts
 noto-fonts-emoji
-nvidia-open
-nvidia-utils
 obsidian
 openssh
 os-prober
