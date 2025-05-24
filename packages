@@ -1,3 +1,4 @@
+7zip
 alsa-utils
 amd-ucode
 android-studio
@@ -48,6 +49,7 @@ imv
 jq
 kitty
 lazygit
+lib32-nvidia-utils
 libisl
 libmpc
 libmtp
@@ -69,6 +71,8 @@ nordic-bluish-accent-theme
 nordzy-cursors
 noto-fonts
 noto-fonts-emoji
+nvidia-open
+nvidia-utils
 obsidian
 openssh
 os-prober
@@ -102,8 +106,8 @@ river
 rofi
 rsync
 ruff
-rustup
 rust-analyzer
+rustup
 shotcut
 slurp
 starship
@@ -205,4 +209,3 @@ zathura
 zathura-pdf-mupdf
 zen-browser-bin
 zoxide
-7zip
