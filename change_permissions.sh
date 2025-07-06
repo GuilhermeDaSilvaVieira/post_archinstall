@@ -103,6 +103,7 @@ usopp_executables=(
   "mangohud"
   "steam"
   "discord"
+  "goanime"
 )
 usopp_desktop_entries=(
   "steam"
