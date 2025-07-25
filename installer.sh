@@ -167,6 +167,12 @@ cmd_to_be_executed_as_super_user() {
   echo "Searxng active" &&
   echo "" &&
 
+  # NVIDIA kernel modules
+  sed -i 's/MODULES=()/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf &&
+  echo "" &&
+  echo "NVIDIA kernel modules added" &&
+  echo "" &&
+
   # Isolate programs to specific user
   mkdir -p /etc/pacman.d/hooks &&
   echo '[Trigger]' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&

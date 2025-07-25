@@ -54,6 +54,7 @@ lib32-nvidia-utils
 libisl
 libmpc
 libmtp
+libva-nvidia-driver
 libreoffice-still
 lldb
 localsend
@@ -73,6 +74,7 @@ nordzy-cursors
 noto-fonts
 noto-fonts-emoji
 nvidia-open
+nvidia-settings
 nvidia-utils
 obsidian
 openssh
