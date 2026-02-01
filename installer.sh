@@ -3,11 +3,11 @@
 install_paru() {
   # AUR Helper (Paru)
   cd &&
-  git clone https://aur.archlinux.org/paru-bin.git &&
-  cd paru-bin &&
+  git clone https://aur.archlinux.org/paru.git &&
+  cd paru &&
   makepkg -sri --noconfirm &&
   cd &&
-  rm -rf paru-bin &&
+  rm -rf paru &&
   echo "" &&
   echo "Paru installed" &&
   echo ""
@@ -74,16 +74,7 @@ cmd_to_be_executed_as_super_user() {
   # All users (previously defined in arch installer)
   USERS=(
   "root"
-  "luffy"
-  "zoro"
-  "nami"
-  "usopp"
-  "sanji"
-  "chopper"
-  "robin"
-  "franky"
-  "brook"
-  "jinbe"
+  "guilherme"
   )
 
   # User treatment
@@ -118,23 +109,16 @@ cmd_to_be_executed_as_super_user() {
       echo "$user done" &&
       echo ""
   done
-  usermod -aG libvirt franky &&
+  usermod -aG libvirt guilherme &&
   echo "" &&
-  echo "franky added to libvirt" &&
+  echo "guilherme added to libvirt" &&
   echo "" &&
 
-  # Change tty colorscheme
-  echo 'colorscheme="cobalt-2"' > /etc/tty-colorscheme/tty-colorscheme.conf &&
-  echo "" &&
-  echo "TTY colorscheme changed" &&
-  echo "" &&
-  
   # All systems to be enabled
   SYSTEMS=(
     "libvirtd"
     "cups"
     "bluetooth"
-    "tty-colorscheme"
     "syncthing@robin"
     "cronie"
     "docker"
@@ -171,23 +155,6 @@ cmd_to_be_executed_as_super_user() {
   sed -i 's/MODULES=()/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf &&
   echo "" &&
   echo "NVIDIA kernel modules added" &&
-  echo "" &&
-
-  # Isolate programs to specific user
-  mkdir -p /etc/pacman.d/hooks &&
-  echo '[Trigger]' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
-  echo 'Operation = Install' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
-  echo 'Operation = Upgrade' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
-  echo 'Operation = Remove' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
-  echo 'Type = Package' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
-  echo 'Target = *' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
-  echo '' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
-  echo '[Action]' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
-  echo 'Description = Running my custom script after pacman/paru transaction...' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
-  echo 'When = PostTransaction' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
-  echo 'Exec = /home/franky/Development/Bash/post_archinstall/change_permissions.sh' >> /etc/pacman.d/hooks/99-isolate-packages.hook &&
-  echo "" &&
-  echo "Isolate packages hook active" &&
   echo ""
 }
 
