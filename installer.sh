@@ -119,7 +119,7 @@ cmd_to_be_executed_as_super_user() {
     "libvirtd"
     "cups"
     "bluetooth"
-    "syncthing@robin"
+    "syncthing@guilherme"
     "cronie"
     "docker"
     "tor"
