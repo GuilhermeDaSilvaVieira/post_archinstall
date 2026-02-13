@@ -1,12 +1,10 @@
 7zip
 alsa-utils
 amd-ucode
-android-studio
 ani-cli
 autoconf
 automake
 awesome-git
-basedpyright
 bash-language-server
 bat
 bison
@@ -195,11 +193,9 @@ ttf-ubuntu-nerd
 ttf-victor-mono-nerd
 ttf-zed-mono-nerd
 udisks2
-ungoogled-chromium-bin
 unzip
 usage
 virt-manager
-visual-studio-code-bin
 wf-recorder
 wget
 which
