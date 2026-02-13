@@ -103,6 +103,7 @@ pipewire-jack
 pipewire-pulse
 pkgconf
 python-lsp-black
+qbittorrent
 qemu
 qt6-multimedia-ffmpeg
 quickshell-git
@@ -132,7 +133,6 @@ tokei
 tor
 torbrowser-launcher
 tradingview
-transmission-gtk
 ttf-0xproto-nerd
 ttf-3270-nerd
 ttf-agave-nerd
